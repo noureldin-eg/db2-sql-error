@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   db2:
-    image: "ibmcom/db2:11.5.5.1"
+    image: "docker.io/ibmcom/db2:11.5.5.1"
     ports:
       - "50000:50000"
     environment:
@@ -10,3 +10,17 @@ services:
       LICENSE: accept
       PERSISTENT_HOME: "false"
     privileged: true
+    healthcheck:
+      test:
+        ["CMD", "test", "-f", "/database/config/.shared-data/setup_complete"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+  app:
+    image: "docker.io/noureldin/db2-sql-error:latest"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      db2:
+        condition: service_healthy

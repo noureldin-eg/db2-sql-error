@@ -12,7 +12,7 @@ public class App {
     private static final String USER = "db2inst1";
     private static final String PASSWORD = "password";
 
-    private static final String SERVER = "localhost";
+    private static final String SERVER = "db2";
     private static final String PORT = "50000";
     private static final String DATABASE = "bludb";
     private static final String URL = "jdbc:db2://" + SERVER + ":" + PORT + "/" + DATABASE + ":"
