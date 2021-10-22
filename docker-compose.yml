@@ -17,7 +17,7 @@ services:
       timeout: 10s
       retries: 10
   app:
-    image: "docker.io/noureldin/db2-sql-error:latest"
+    image: "docker.io/noureldin/db2-sql-error:1.1"
     build:
       context: .
       dockerfile: ./Dockerfile
