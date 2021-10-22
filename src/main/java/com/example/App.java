@@ -24,7 +24,7 @@ public class App {
         // @formatter:off
         String SQL = "SELECT *" 
                 + " FROM ( VALUES (10,'A'),(20,'B'),(30,'C'),(40,'D') ) AS T(COL1,COL2)"
-                + " WHERE T.COL2 = :PARAM OR :PARAM = 'ALL'";
+                + " WHERE T.COL2 = CAST (:PARAM AS VARCHAR(3)) OR :PARAM = 'ALL'";
         // @formatter:on
         String PARAM = "ALL";
 

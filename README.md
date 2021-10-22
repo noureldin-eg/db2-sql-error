@@ -132,7 +132,7 @@ Just `cd` into the project root directory and execute the following commands to 
 
   ```bash
   mvn clean package
-  java -jar target/db2-sql-error-1.0-SNAPSHOT-jar-with-dependencies.jar
+  java -jar target/db2-sql-error-*-SNAPSHOT-jar-with-dependencies.jar
   ```
 
 - **Docker:**
