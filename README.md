@@ -51,6 +51,9 @@ Surprisingly, it does not work.
    Driver Name: IBM Data Server Driver for JDBC and SQLJ
    Driver Version: 4.29.24
    JDBC Version: 4.1
+   Number of statement parameters: 2
+   SQL type of parameter 1 is VARCHAR(1)
+   SQL type of parameter 2 is VARCHAR(3)
    SQLException information:
    Error msg: DB2 SQL Error: SQLCODE=-302, SQLSTATE=22001, SQLERRMC=null, DRIVER=4.29.24
    SQLSTATE: 22001
@@ -74,7 +77,7 @@ Surprisingly, it does not work.
    	at com.ibm.db2.jcc.am.k_.bd(k_.java:785)
    	at com.ibm.db2.jcc.am.k_.executeQuery(k_.java:750)
    	at com.ibm.db2.jcc.am.d0.executeQuery(d0.java:297)
-   	at com.example.App.main(App.java:38)
+   	at com.example.App.main(App.java:40)
    ```
 
 5. One workaround to fix this error is to **un**comment [line #30](https://github.com/noureldin-eg/db2-sql-error/blob/4eb6ed8cf15c165d9b076ac55ad303c78d34e923/src/main/java/com/example/App.java#L30)
