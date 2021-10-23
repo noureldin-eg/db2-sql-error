@@ -1,4 +1,11 @@
 # db2-sql-error
+
+This repository was created to support [my first Stack Overflow Question](https://stackoverflow.com/questions/69670420/how-to-match-all-rows-if-sql-parameter-is-all-in-db2-jdbc) and the solution is to use `(:PARAM AS VARCHAR(X))` where `X` is the maximum length of characters in `PARAM`. This fix is now applied in version **1.2**. Continue reading and [check the accepted answer](https://stackoverflow.com/a/69674102/16540183) for more information.
+
+---
+
+#### Overview:
+
 This application connects to **DB2** and executes this simple **SQL** statement:
 
 ```sql
@@ -20,7 +27,6 @@ Surprisingly, it does not work.
    ```bash
    git clone https://github.com/noureldin-eg/db2-sql-error.git
    ```
-
 2. *Optionally:* Download the pre-built docker image from **dockerhub**
 
    ```bash
@@ -28,7 +34,6 @@ Surprisingly, it does not work.
    ```
 
    *if you skipped step 2, the image will be built from source in the next step*.
-
 3. Start **DB2** and execute the application using **Docker Compose**
 
    ```bash
@@ -36,7 +41,6 @@ Surprisingly, it does not work.
    ```
 
    *This command will wait for DB2 to be ready and complete its setup before starting the application.*
-
 4. View application output
 
    ```bash
@@ -79,7 +83,6 @@ Surprisingly, it does not work.
    	at com.ibm.db2.jcc.am.d0.executeQuery(d0.java:297)
    	at com.example.App.main(App.java:40)
    ```
-
 5. One workaround to fix this error is to **un**comment [line #30](https://github.com/noureldin-eg/db2-sql-error/blob/4eb6ed8cf15c165d9b076ac55ad303c78d34e923/src/main/java/com/example/App.java#L30)
 
    ```java
@@ -91,13 +94,11 @@ Surprisingly, it does not work.
    ```java
    statement.setJccStringAtName("PARAM", PARAM); // Comment me
    ```
-
 6. Rebuild and restart the application
 
    ```bash
    docker-compose up -d --build
    ```
-
 7. All rows should be returned this time
 
    ```bash
@@ -125,7 +126,7 @@ Surprisingly, it does not work.
 
 #### Build from source:
 
-You can build an executable jar directly if have **Maven** installed or you can build an the application image using **Docker**. 
+You can build an executable jar directly if have **Maven** installed or you can build an the application image using **Docker**.
 Just `cd` into the project root directory and execute the following commands to build and run the application.
 
 - **Maven:**
@@ -134,7 +135,6 @@ Just `cd` into the project root directory and execute the following commands to 
   mvn clean package
   java -jar target/db2-sql-error-*-SNAPSHOT-jar-with-dependencies.jar
   ```
-
 - **Docker:**
 
   ```bash
@@ -144,16 +144,17 @@ Just `cd` into the project root directory and execute the following commands to 
 
 ---
 
+#### DB2 versions:
+
 I have also executed the query on other **DB2** versions and got the same results
 
 1. ```
-	Database Product Name: DB2/LINUXX8664
-	Database Product Version: SQL110560
-	Database Version: 11.5
-	```
-
+    Database Product Name: DB2/LINUXX8664
+    Database Product Version: SQL110560
+    Database Version: 11.5
+   ```
 2. ```
-	Database Product Name: DB2/AIX64
-	Database Product Version: SQL110146
-	Database Version: 11.1
-	```
+    Database Product Name: DB2/AIX64
+    Database Product Version: SQL110146
+    Database Version: 11.1
+   ```
